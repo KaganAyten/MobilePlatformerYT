@@ -9,12 +9,17 @@ public class KarakterKontrol : MonoBehaviour
     [SerializeField]
     [Range(150, 350)]
     private float ziplamaGucu;
+    [SerializeField]
+    private float tirmanmaHizi;
 
     private Animator anim;
     private SpriteRenderer sRenderer;
-    Rigidbody2D rb;
+    private Rigidbody2D rb;
+
     int yon;
+    int tirmanmaDurumu;
     bool ciftZiplayabilir;
+    bool tirmanabilir;
     void Start()
     {
         anim = gameObject.GetComponent<Animator>();
@@ -24,6 +29,11 @@ public class KarakterKontrol : MonoBehaviour
     void Update()
     {
         transform.Translate(yon * hareketHizi * Time.deltaTime, 0, 0);
+        rb.gravityScale = 1 - tirmanmaDurumu;
+        if (tirmanabilir)
+        {
+            transform.Translate(0, tirmanmaDurumu * tirmanmaHizi * Time.deltaTime, 0);
+        }
         if (yon != 0)
         {
             anim.SetBool("kosuyor", true);
@@ -59,6 +69,10 @@ public class KarakterKontrol : MonoBehaviour
     {
         this.yon = fonksiyonYon;
     }
+    public void TirmanmaKarar(int tirmanmaDurumu)
+    {
+        this.tirmanmaDurumu = tirmanmaDurumu;
+    }
     public void Ziplama()
     {
         if (ciftZiplayabilir == false)
@@ -82,5 +96,31 @@ public class KarakterKontrol : MonoBehaviour
 
 
     }
+    public bool TirmanabilirMi()
+    {
+        return tirmanabilir;
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Merdiven"))
+        {
+            tirmanabilir = true;
+        }
+    }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Merdiven"))
+        {
+            tirmanabilir = true;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Merdiven"))
+        {
+            tirmanabilir = false;
+        }
+    }
+    
 
 }
