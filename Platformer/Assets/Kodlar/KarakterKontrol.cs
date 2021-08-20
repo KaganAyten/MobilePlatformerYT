@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class KarakterKontrol : MonoBehaviour
 {
@@ -105,6 +106,14 @@ public class KarakterKontrol : MonoBehaviour
         if (collision.gameObject.CompareTag("Merdiven"))
         {
             tirmanabilir = true;
+        }
+        if (collision.gameObject.CompareTag("LevelGec"))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
+        }
+        if (collision.gameObject.CompareTag("OncekiLevel"))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
         }
     }
     private void OnTriggerStay2D(Collider2D collision)

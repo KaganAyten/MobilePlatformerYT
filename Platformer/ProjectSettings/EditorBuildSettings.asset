@@ -4,5 +4,17 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Bolum1.unity
+    guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/Bolum2.unity
+    guid: 8d0a008ac64f8144789058711677f730
+  - enabled: 1
+    path: Assets/Scenes/Bolum3.unity
+    guid: af807c4df3a0bd14a8e252f539f1d8cb
+  - enabled: 1
+    path: Assets/Scenes/Bolum4.unity
+    guid: 04298bf743ecdc443a3a339d76b113e1
   m_configObjects: {}
